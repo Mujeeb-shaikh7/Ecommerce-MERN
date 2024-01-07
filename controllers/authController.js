@@ -3,7 +3,7 @@ import User from '../models/user.js'
 import  Jwt  from 'jsonwebtoken';
  export const registerController=async(req,res)=>{
     try {
-        const {name,email,password,phone,address}=req.body
+        const {name,email,password,phone,address,answer}=req.body
         const existingUser=await User.findOne({email});
         if(existingUser){
             return res.status(200).send({
@@ -17,7 +17,8 @@ import  Jwt  from 'jsonwebtoken';
             email,
             password:hashed,
             phone,
-            address
+            address,
+            answer
         }).save();
         console.log(user)
         return res.status(201).send({
@@ -68,7 +69,8 @@ export const loginController=async (req,res)=>{
                 name:user.name,
                 email:user.email,
                 phone:user.phone,
-                address:user.address
+                address:user.address,
+                role: user.role,
             },
             token
         })
@@ -81,3 +83,12 @@ export const loginController=async (req,res)=>{
         })
     }
 }
+
+export const testController = (req, res) => {
+    try {
+      res.send("Protected Routes");
+    } catch (error) {
+      console.log(error);
+      res.send({ error });
+    }
+  };
