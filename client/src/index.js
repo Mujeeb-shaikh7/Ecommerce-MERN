@@ -3,20 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import  { Toaster } from 'react-hot-toast';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+import { AuthProvider } from './context/auth';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Router>
-     <React.StrictMode>
-    <App />
-  </React.StrictMode>
-  </Router>
+  <AuthProvider>
+    <Router>
+    
+         <App />
+  
+   </Router>
+  </AuthProvider>
+ 
  
 );
 

@@ -7,7 +7,7 @@ import  Jwt  from 'jsonwebtoken';
         const existingUser=await User.findOne({email});
         if(existingUser){
             return res.status(200).send({
-                success:true,
+                success:false,
                 message:"already resgister please login"
             })
         }
