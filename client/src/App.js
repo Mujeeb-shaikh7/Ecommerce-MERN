@@ -1,5 +1,5 @@
 import {Routes,Route} from 'react-router-dom'
-import Layout from './components/layouts/Layout';
+
 import HomePage from './pages/HomePage';
 import Contact from './pages/Contact';
 import About from './pages/About';
@@ -8,13 +8,21 @@ import PageNotFound from './pages/PageNotFound';
 import Register from './pages/Auth/Register';
 
 import Login from './pages/Auth/Login';
+import Dashboard from './pages/user/Dashboard';
+import PrivateRoute from './components/Routes/Private';
+import Forgotpassword from './pages/Auth/Forgotpassword';
 
 function App() {
   return (
     <>
         <Routes>
           <Route path='/' element={<HomePage/>}/>
+          <Route path='/dashboard' element={<PrivateRoute/>}>
+          <Route path='' element={<Dashboard/>}/>
+          </Route>
+          
           <Route path='/register' element={<Register/>}/>
+          <Route path='/forgot-password' element={<Forgotpassword/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/about' element={<About/>}/>
           <Route path='/contact' element={<Contact/>}/>
